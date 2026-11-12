@@ -1,0 +1,9 @@
+node_modules/
+.env
+.env.local
+.env.*.local
+frontend/dist/
+coverage/
+*.log
+.local-pg/
+.tools/

@@ -1,17 +1,7 @@
 import React, { useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import '../style.css';
-
-async function readApiResponse(response) {
-  let data;
-  try {
-    data = await response.json();
-  } catch {
-    throw new Error(`A API retornou uma resposta inválida (HTTP ${response.status}). Confira os logs da função na Vercel.`);
-  }
-  if (!response.ok) throw new Error(data.message || `Erro da API (HTTP ${response.status}).`);
-  return data;
-}
+import { apiFetch } from './api.js';
 
 function AuthCard({ registering }) {
   const [name, setName] = useState('');
@@ -40,19 +30,16 @@ function AuthCard({ registering }) {
 
     setSubmitting(true);
     try {
-      const response = await fetch(registering ? '/api/auth/register' : '/api/auth/login', {
+      await apiFetch(registering ? '/auth/register' : '/auth/login', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(registering ? { name, email, password } : { email, password }),
+        body: registering ? { nome: name, email, senha: password } : { email, senha: password },
       });
-      const data = await readApiResponse(response);
 
       if (registering) {
         setSuccess('Conta criada com sucesso! Redirecionando...');
         window.setTimeout(() => { window.location.href = 'index.html'; }, 2000);
       } else {
-        localStorage.setItem('questify_access_token', data.accessToken);
-        localStorage.setItem('questify_refresh_token', data.refreshToken);
+        // A sessão foi gravada pelo servidor em cookie HttpOnly; nada é guardado no localStorage.
         window.location.href = 'dashboard.html';
       }
     } catch (submitError) {

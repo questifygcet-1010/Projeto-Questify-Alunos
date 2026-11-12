@@ -17,6 +17,7 @@ export default defineConfig({
       input: {
         login: resolve(frontendRoot, 'index.html'),
         register: resolve(frontendRoot, 'register.html'),
+        dashboard: resolve(frontendRoot, 'dashboard.html'),
       },
     },
   },

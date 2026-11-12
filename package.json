@@ -2,18 +2,26 @@
   "name": "questify-auth",
   "version": "1.0.0",
   "private": true,
-  "description": "Frontend e API REST de autenticação do Questify",
+  "description": "Frontend React e API REST de autenticação do Questify (Squad 1)",
   "engines": {
-    "node": "22.x"
+    "node": ">=22"
   },
   "scripts": {
-    "start": "node backend/server.js",
     "dev": "vite frontend",
+    "dev:api": "node --env-file-if-exists=.env backend/server.js",
     "build": "vite build frontend",
-    "vercel-build": "npm run build && node --check api/health.js && node --check api/auth/login.js && node --check api/auth/register.js && node --check api/_lib/auth-handler.js"
+    "start": "node --env-file-if-exists=.env backend/server.js",
+    "start:auto": "node --env-file-if-exists=.env database/scripts/start-local.mjs",
+    "db:migrate": "node --env-file-if-exists=.env database/scripts/migrate.mjs up",
+    "db:rollback": "node --env-file-if-exists=.env database/scripts/migrate.mjs down",
+    "db:status": "node --env-file-if-exists=.env database/scripts/migrate.mjs status",
+    "db:seed": "node --env-file-if-exists=.env database/scripts/seed.mjs",
+    "test": "node --test \"tests/unit/**/*.test.mjs\"",
+    "test:db": "node --env-file-if-exists=.env --test \"tests/database/*.test.mjs\" \"tests/integration/**/*.test.mjs\"",
+    "vercel-build": "npm run build"
   },
   "dependencies": {
-    "postgres": "^3.4.7",
+    "pg": "^8.13.1",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },

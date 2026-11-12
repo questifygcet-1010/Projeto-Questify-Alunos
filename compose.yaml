@@ -1,0 +1,38 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-questify}
+      POSTGRES_USER: ${POSTGRES_USER:-questify}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-troque_esta_senha_de_desenvolvimento}
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-55432}:5432"
+    volumes:
+      - questify_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  app:
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      HOST: 0.0.0.0
+      PORT: 8000
+      NODE_ENV: ${NODE_ENV:-development}
+      DATABASE_URL: postgresql://${POSTGRES_USER:-questify}:${POSTGRES_PASSWORD:-troque_esta_senha_de_desenvolvimento}@postgres:5432/${POSTGRES_DB:-questify}
+    ports:
+      - "127.0.0.1:${APP_PORT:-8000}:8000"
+
+volumes:
+  questify_postgres_data:
