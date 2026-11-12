@@ -163,11 +163,13 @@ test('FK do banco: categoria removida entre a checagem e o INSERT -> 400; usuár
   assert.equal((await wiredRoute(repo).route.create({ method: 'POST', headers: AUTH, body: BODY })).status, 401);
 });
 
-test('GET categorias -> 200 com a lista; sem sessão -> 401', async () => {
-  const { route } = wiredRoute();
-  const ok = await route.categories({ method: 'GET', headers: AUTH });
-  assert.equal(ok.status, 200);
-  assert.equal(ok.body.categories.length, 2);
-  const denied = createQuestsRoute({ requireUser: rejectAuth });
-  assert.equal((await denied.categories({ method: 'GET', headers: {} })).status, 401);
+test('GET categorias é público -> 200 com a lista, mesmo sem sessão', async () => {
+  const repository = memoryRepository();
+  const service = createQuestService({ repository, withTransaction: (work) => work('TX'), today: () => TODAY });
+  const route = createQuestsRoute({ requireUser: rejectAuth, ...service });
+  const res = await route.categories({ method: 'GET', headers: {} });
+  assert.equal(res.status, 200);
+  assert.equal(res.body.categories.length, 2);
+  // criar continua exigindo login
+  assert.equal((await route.create({ method: 'POST', headers: {}, body: BODY })).status, 401);
 });

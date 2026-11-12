@@ -72,7 +72,7 @@ export function createQuestsRoute({
   createQuest = defaultCreateQuest,
   listQuestCategories = defaultListQuestCategories,
 } = {}) {
-  /** POST /api/v1/quests -> 201 | 400 | 401 | 403 | 405 | 413 */
+  /** POST /api/v1/quests -> 201 | 400 | 401 | 403 | 405 | 413 (sempre exige login) */
   async function create({ method, headers, body, bodyError } = {}) {
     if (method !== 'POST') return methodNotAllowed('POST');
     try {
@@ -95,12 +95,15 @@ export function createQuestsRoute({
     }
   }
 
-  /** GET /api/v1/quest-categories -> 200 | 401 (alimenta a seleção de categoria da tela) */
-  async function categories({ method, headers } = {}) {
+  /**
+   * GET /api/v1/quest-categories -> 200 (alimenta a seleção de categoria da tela).
+   * Público por enquanto: são só dados de referência (nome, dificuldade, XP), sem dado de usuário.
+   * Criar quest (POST) continua exigindo login.
+   */
+  async function categories({ method } = {}) {
     if (method !== 'GET') return methodNotAllowed('GET');
     try {
-      const userId = await requireUser(headers);
-      return json(200, { categories: await listQuestCategories(userId) });
+      return json(200, { categories: await listQuestCategories() });
     } catch (error) {
       return errorResponse(error);
     }

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ApiError, createQuest, getToken, listQuestCategories } from './api.js';
+import { CATEGORIAS_EXEMPLO, MODO_DEMONSTRACAO } from './config.js';
 
 // Squad 2 — tela "Nova quest" (história #108), no visual do Figma "Questify — UX/UI".
 // A validação aqui é só de conveniência: a regra vale no servidor.
@@ -76,7 +77,7 @@ function Campo({ id, rotulo, erro, children }) {
 export default function NovaQuest() {
   const [categorias, setCategorias] = useState([]);
   const [carregando, setCarregando] = useState(true);
-  const [semSessao, setSemSessao] = useState(!getToken());
+  const [semSessao, setSemSessao] = useState(!MODO_DEMONSTRACAO && !getToken());
   const [falhaCarga, setFalhaCarga] = useState('');
   const [dados, setDados] = useState(VAZIO);
   const [erros, setErros] = useState({});
@@ -91,7 +92,8 @@ export default function NovaQuest() {
     listQuestCategories()
       .then(setCategorias)
       .catch((erro) => {
-        if (erro instanceof ApiError && erro.status === 401) setSemSessao(true);
+        if (MODO_DEMONSTRACAO) setCategorias(CATEGORIAS_EXEMPLO);
+        else if (erro instanceof ApiError && erro.status === 401) setSemSessao(true);
         else setFalhaCarga('Não foi possível carregar as categorias. Tente novamente.');
       })
       .finally(() => setCarregando(false));
@@ -118,6 +120,17 @@ export default function NovaQuest() {
     setErros(encontrados);
     if (Object.keys(encontrados).length > 0) return;
 
+    if (MODO_DEMONSTRACAO) {
+      // Não chama a API: mostra o que o servidor gravaria (status pendente, XP da categoria).
+      const titulo = dados.title.trim();
+      setDados(VAZIO);
+      setMensagem({
+        tipo: 'sucesso',
+        texto: `Modo demonstração: a quest "${titulo}" seria criada como pendente, com +${categoria.baseXp} XP. Nada foi salvo.`,
+      });
+      return;
+    }
+
     setEnviando(true);
     try {
       const quest = await createQuest({
@@ -142,6 +155,7 @@ export default function NovaQuest() {
       <Navbar />
       <main className="q-content">
         <div className="q-page-title">
+          {MODO_DEMONSTRACAO && <span className="q-demo-badge">Modo demonstração · nada é salvo</span>}
           <h1>Nova quest</h1>
           <p>Crie uma quest a partir de uma categoria.</p>
         </div>

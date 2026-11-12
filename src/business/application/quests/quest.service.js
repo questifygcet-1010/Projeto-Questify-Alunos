@@ -74,9 +74,8 @@ export function createQuestService({ repository, withTransaction, today = () => 
     }
   }
 
-  /** Categorias para o formulário (exige usuário autenticado). */
-  async function listQuestCategories(userId) {
-    if (parsePositiveId(userId) === null) throw new UnauthenticatedError();
+  /** Categorias para o formulário (dados de referência, sem dado de usuário). */
+  async function listQuestCategories() {
     return repository.listCategories();
   }
 
