@@ -4,6 +4,7 @@ const { extname, resolve, sep } = require('node:path');
 const { createHash, pbkdf2Sync, randomBytes, timingSafeEqual } = require('node:crypto');
 const getDatabase = require('../api/_lib/db');
 const guildsHttp = require('../api/_lib/guilds-http');
+const questsHttp = require('../api/_lib/quests-http');
 
 const backendRoot = __dirname;
 const frontendRoot = resolve(backendRoot, '..', 'frontend', 'dist');
@@ -149,6 +150,8 @@ const server = createServer(async (req, res) => {
   const url = new URL(req.url, `http://${req.headers.host || 'localhost'}`);
   if (url.pathname === '/api/v1/guilds') return guildsHttp.guilds(req, res);
   if (url.pathname === '/api/v1/guild-categories') return guildsHttp.categories(req, res);
+  if (url.pathname === '/api/v1/quests') return questsHttp.quests(req, res);
+  if (url.pathname === '/api/v1/quest-categories') return questsHttp.categories(req, res);
   if (req.method === 'POST' && url.pathname.startsWith('/api/')) {
     try {
       await handleAuth(req, res, url.pathname);
