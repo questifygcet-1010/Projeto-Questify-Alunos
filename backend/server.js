@@ -1,5 +1,5 @@
 const { createServer } = require('node:http');
-const { createReadStream, existsSync } = require('node:fs');
+const { createReadStream, existsSync, statSync } = require('node:fs');
 const { extname, resolve, sep } = require('node:path');
 const { createHash, pbkdf2Sync, randomBytes, timingSafeEqual } = require('node:crypto');
 const getDatabase = require('../api/_lib/db');
@@ -7,7 +7,7 @@ const guildsHttp = require('../api/_lib/guilds-http');
 const walletHttp = require('../api/_lib/wallet.http');
 
 const backendRoot = __dirname;
-const frontendRoot = resolve(backendRoot, '..', 'frontend', 'dist');
+const frontendRoot = resolve(backendRoot, '..', 'frontend', 'out');
 const host = process.env.HOST || '127.0.0.1';
 const port = Number(process.env.PORT || 8000);
 const iterations = 310_000;
@@ -144,6 +144,11 @@ const contentTypes = {
   '.html': 'text/html; charset=utf-8',
   '.js': 'text/javascript; charset=utf-8',
   '.json': 'application/json; charset=utf-8',
+  '.svg': 'image/svg+xml',
+  '.woff2': 'font/woff2',
+  '.txt': 'text/plain; charset=utf-8',
+  '.ico': 'image/x-icon',
+  '.png': 'image/png',
 };
 
 const server = createServer(async (req, res) => {
@@ -174,13 +179,26 @@ const server = createServer(async (req, res) => {
     res.writeHead(400);
     return res.end();
   }
-  const relativePath = pathname === '/' ? 'index.html' : pathname.replace(/^\/+/, '');
+  // Links antigos do front em Vite.
+  if (pathname === '/index.html' || pathname === '/register.html') {
+    res.writeHead(302, { Location: pathname === '/index.html' ? '/login' : '/register' });
+    return res.end();
+  }
+
+  // Export estático do Next.js: "/" -> index.html, "/login" -> login.html,
+  // "/guilds/<id>" -> guilds/_.html (a página lê o id da URL no navegador).
+  const cleanPath = pathname.replace(/\/+$/, '') || '/';
+  let relativePath;
+  if (cleanPath === '/') relativePath = 'index.html';
+  else if (/^\/guilds\/[^/]+$/.test(cleanPath)) relativePath = 'guilds/_.html';
+  else if (extname(cleanPath)) relativePath = cleanPath.slice(1);
+  else relativePath = `${cleanPath.slice(1)}.html`;
   const filePath = resolve(frontendRoot, relativePath);
   if (filePath !== frontendRoot && !filePath.startsWith(frontendRoot + sep)) {
     res.writeHead(403);
     return res.end();
   }
-  if (!existsSync(filePath)) {
+  if (!existsSync(filePath) || !statSync(filePath).isFile()) {
     res.writeHead(404);
     return res.end('Not found');
   }

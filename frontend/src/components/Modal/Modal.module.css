@@ -1,0 +1,129 @@
+.root {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  font-family: var(--font-body);
+  font-variation-settings: 'opsz' 14;
+  color: var(--color-ink);
+}
+
+.backdrop {
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay);
+  animation: fade-in 150ms ease-out;
+}
+
+/* Mobile (272:115): bottom sheet colado na base, raio 16 no topo, padding 12/20/24. */
+.panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  width: 100%;
+  max-height: calc(100dvh - var(--space-8));
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  padding: var(--space-3) var(--space-5) calc(var(--space-6) + env(safe-area-inset-bottom));
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+  background: var(--color-white);
+  box-shadow: var(--shadow-modal);
+  animation: slide-up 200ms ease-out;
+  transition: transform 150ms ease-out;
+}
+
+.handleArea {
+  display: flex;
+  justify-content: center;
+  margin: calc(-1 * var(--space-3)) calc(-1 * var(--space-5)) 0;
+  padding: var(--space-3) 0 var(--space-1);
+  cursor: grab;
+  touch-action: none;
+}
+
+.handle {
+  width: 40px;
+  height: 4px;
+  border-radius: 2px;
+  background: var(--color-line);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-semibold);
+  line-height: 28px;
+  color: var(--color-ink);
+}
+
+.close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  margin: -12px -12px -12px 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.close:hover {
+  background: var(--color-sky);
+  color: var(--color-ink);
+}
+
+.close:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.close:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Desktop (58:1290): diálogo centralizado de 520px, raio 10, padding 28. */
+@media (min-width: 768px) {
+  .root {
+    align-items: center;
+    padding: var(--space-6);
+  }
+
+  .panel {
+    max-width: 520px;
+    max-height: calc(100dvh - 2 * var(--space-6));
+    padding: 28px;
+    border-radius: var(--radius-modal);
+    animation: pop-in 180ms ease-out;
+  }
+
+  .handleArea {
+    display: none;
+  }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+}
+
+@keyframes slide-up {
+  from { transform: translateY(100%); }
+}
+
+@keyframes pop-in {
+  from { opacity: 0; transform: scale(0.97); }
+}

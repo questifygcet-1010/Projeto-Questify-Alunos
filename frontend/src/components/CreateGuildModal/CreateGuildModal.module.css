@@ -1,0 +1,138 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  color: var(--color-ink);
+}
+
+/* Campos (58:1298): branco, borda line, raio 6, padding 13/14, texto 15. */
+.control {
+  width: 100%;
+  min-height: 48px;
+  padding: 13px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  font-size: var(--text-lg);
+  line-height: 20px;
+  color: var(--color-ink);
+}
+
+.control::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.control:hover:not(:disabled) {
+  border-color: var(--color-muted);
+}
+
+.control:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0;
+  border-color: var(--color-primary);
+}
+
+/* Enviando (271:173): campos preservados e desabilitados, com a mesma aparência. */
+.control:disabled {
+  background: var(--color-white);
+  color: var(--color-ink);
+  opacity: 1;
+  cursor: not-allowed;
+}
+
+.placeholder:disabled {
+  color: var(--color-muted);
+}
+
+/* Erro (267:131): borda de 1,5px em --color-error. Os navegadores arredondam
+   bordas fracionárias para 1px, então: borda de 1px + sombra interna de 0,5px. */
+.invalid,
+.invalid:hover:not(:disabled) {
+  border-color: var(--color-error);
+  box-shadow: inset 0 0 0 0.5px var(--color-error);
+}
+
+.invalid:focus-visible {
+  outline-color: var(--color-error);
+  border-color: var(--color-error);
+}
+
+.selectWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.select {
+  padding-right: 42px;
+  appearance: none;
+  cursor: pointer;
+}
+
+.placeholder {
+  color: var(--color-muted);
+}
+
+.chevron {
+  position: absolute;
+  right: 15px;
+  color: var(--color-muted);
+  pointer-events: none;
+}
+
+.textarea {
+  min-height: 96px;
+  resize: vertical;
+}
+
+.counter {
+  align-self: flex-end;
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+/* Aviso (58:1310): gold-soft, raio 6, padding 10/12, texto 13 gold-ink. */
+.notice {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: 10px var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-gold-soft);
+  font-size: var(--text-md);
+  color: var(--color-gold-ink);
+}
+
+.noticeIcon {
+  flex-shrink: 0;
+}
+
+.formError {
+  padding: 10px var(--space-3);
+  border-radius: var(--radius-md);
+  background: var(--color-error-soft);
+  font-size: var(--text-md);
+  color: var(--color-error);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.actions .action {
+  flex: 1 1 0;
+  min-width: 0;
+}

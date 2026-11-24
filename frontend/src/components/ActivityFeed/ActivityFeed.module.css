@@ -1,0 +1,307 @@
+.feed {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+  color: var(--color-ink);
+}
+
+/* Filtros não aparecem no mobile (frame 5:2). */
+.filters {
+  display: none;
+  gap: var(--space-2);
+}
+
+.filter {
+  position: relative;
+  padding: 6px 14px;
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  font-size: var(--text-md);
+  font-weight: var(--weight-medium);
+  line-height: normal;
+  color: var(--color-muted);
+  cursor: pointer;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+/* Amplia a área de toque para 44px de altura sem mudar o visual. */
+.filter::after {
+  content: '';
+  position: absolute;
+  inset: -7px 0;
+}
+
+.filter:hover {
+  color: var(--color-ink);
+  border-color: var(--color-muted);
+}
+
+.filter:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.filterActive,
+.filterActive:hover {
+  background: var(--color-ink);
+  border-color: var(--color-ink);
+  color: var(--color-white);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.empty {
+  padding: var(--space-5);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  color: var(--color-muted);
+}
+
+/* Itens do feed (mobile: padding 16, gap 12). */
+.item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.challenge {
+  border: 1.5px solid var(--color-primary);
+}
+
+.itemHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.author {
+  display: flex;
+  flex: 1 1 0;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.authorName,
+.authorAction {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.authorName {
+  font-size: var(--text-base);
+  font-weight: var(--weight-semibold);
+  color: var(--color-ink);
+}
+
+.authorAction {
+  font-size: var(--text-md);
+  color: var(--color-muted);
+}
+
+/* No mobile a etiqueta "Desafio" fica abaixo do cabeçalho; no desktop, à direita. */
+.tagDesktop {
+  display: none;
+}
+
+.tagMobile {
+  display: flex;
+}
+
+.challengeTitle {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: 25px;
+  color: var(--color-ink);
+}
+
+.description {
+  font-size: var(--text-lg);
+  line-height: 22px;
+  color: var(--color-muted);
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+  font-size: var(--text-base);
+  color: var(--color-muted);
+}
+
+.deadline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.challengeActions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.challengeActions .challengeButton {
+  width: 100%;
+}
+
+.text {
+  font-size: var(--text-lg);
+  line-height: 22px;
+  color: var(--color-ink);
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.interactions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+}
+
+.interaction {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: var(--touch-target);
+  margin: -13px 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  font-size: var(--text-base);
+  color: var(--color-muted);
+  cursor: pointer;
+}
+
+.interaction:hover {
+  color: var(--color-ink);
+}
+
+.interaction:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.liked,
+.liked:hover {
+  color: var(--color-error);
+}
+
+/* O número de curtidas continua cinza; só o coração fica vermelho. */
+.liked .count {
+  color: var(--color-muted);
+}
+
+.commentForm {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.commentField {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--touch-target);
+  padding: 10px var(--space-3);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  font-size: var(--text-base);
+  color: var(--color-ink);
+}
+
+.commentField::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.commentField:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0;
+}
+
+.feedback:empty {
+  display: none;
+}
+
+.feedback {
+  font-size: var(--text-md);
+  color: var(--color-muted);
+}
+
+@media (min-width: 768px) {
+  .filters {
+    display: flex;
+  }
+
+  .item {
+    padding: var(--space-5);
+  }
+
+  .challenge {
+    gap: 14px;
+  }
+
+  .tagDesktop {
+    display: flex;
+  }
+
+  .tagMobile {
+    display: none;
+  }
+
+  .challengeTitle {
+    font-size: var(--text-3xl);
+    line-height: 26px;
+  }
+
+  .meta {
+    gap: var(--space-2) var(--space-4);
+  }
+
+  .challengeActions {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+
+  .challengeActions .challengeButton {
+    width: auto;
+    min-height: 40px;
+    padding: 8px 15px;
+    font-size: var(--text-base);
+  }
+}

@@ -1,0 +1,86 @@
+/* Coluna única na ordem do mobile (frame 5:2): gap de 16px entre os blocos. */
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-areas:
+    'progress'
+    'guilds'
+    'quests'
+    'composer'
+    'feed';
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.progress { grid-area: progress; min-width: 0; }
+.guilds { grid-area: guilds; min-width: 0; }
+.quests { grid-area: quests; min-width: 0; }
+.composer { grid-area: composer; min-width: 0; }
+.feed { grid-area: feed; min-width: 0; }
+
+@media (min-width: 768px) {
+  .grid {
+    gap: var(--space-6) var(--space-4);
+  }
+}
+
+/* Desktop (frame 4:2): progresso em largura total; feed à esquerda e "Suas guildas"
+   numa coluna de 380px que ocupa as linhas do feed. Gap 24 entre colunas e abaixo
+   do progresso; 16 entre os blocos do feed. */
+@media (min-width: 1200px) {
+  .grid {
+    grid-template-columns: minmax(0, 1fr) var(--sidebar-width);
+    grid-template-rows: auto auto auto 1fr;
+    grid-template-areas:
+      'progress progress'
+      'quests guilds'
+      'composer guilds'
+      'feed guilds';
+    gap: var(--space-4) var(--space-6);
+  }
+
+  .progress {
+    margin-bottom: var(--space-2);
+  }
+
+  .guilds {
+    grid-row: 2 / -1;
+  }
+}
+
+/* Esqueleto de carregamento */
+.skeletonCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.skeletonGuilds {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+  overflow: hidden;
+}
+
+.skeletonGuild {
+  display: flex;
+  flex: 0 0 260px;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-4);
+}
+
+@media (min-width: 1200px) {
+  .skeletonGuilds {
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+
+  .skeletonGuild {
+    flex: none;
+  }
+}

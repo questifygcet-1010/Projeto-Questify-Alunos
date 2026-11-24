@@ -1,0 +1,77 @@
+/* Design tokens do Questify — extraídos do Figma (arquivo 77xzd0qMz7vkbWR7CqYF3l). */
+:root {
+  /* Cores (variáveis do Figma) */
+  --color-ink: #0f2a55;
+  --color-primary: #1d5fc4;
+  --color-primary-dark: #164a99;
+  --color-sky: #eaf1fb;
+  --color-muted: #5b6b85;
+  --color-line: #d5e0f0;
+  --color-gold: #f2b33d;
+  --color-gold-soft: #fdf3dc;
+  --color-gold-ink: #7a4e00;
+  --color-success: #2e9e6b;
+  --color-white: #ffffff;
+  --color-error: #b3261e; /* variável "error" do Figma: Sair, erros, coração curtido */
+  --color-error-soft: #fdecea; /* derivado (não está no Figma): fundo de mensagens de erro gerais */
+  --color-overlay: rgba(15, 42, 85, 0.55); /* "Fundo escurecido" do modal (58:1289) */
+
+  /* Tipografia */
+  --font-heading: var(--font-sora), system-ui, sans-serif;
+  --font-body: var(--font-dm-sans), system-ui, sans-serif;
+
+  --text-xs: 10px;
+  --text-sm: 12px;
+  --text-md: 13px;
+  --text-base: 14px;
+  --text-lg: 15px;
+  --text-xl: 16px;
+  --text-2xl: 18px;
+  --text-3xl: 19px;
+  --text-4xl: 20px;
+  --text-5xl: 22px;
+  --text-6xl: 26px;
+
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Raios */
+  --radius-sm: 4px;  /* chips/tags */
+  --radius-md: 6px;  /* botões, campos, aba da pasta */
+  --radius-lg: 8px;  /* cards */
+  --radius-modal: 10px; /* modal desktop */
+  --radius-xl: 16px; /* topo do bottom sheet */
+  --radius-full: 999px;
+
+  /* Sombras */
+  --shadow-menu: 0 8px 24px rgba(15, 41, 84, 0.14);
+  --shadow-modal: 0 16px 40px rgba(15, 41, 84, 0.25);
+
+  /* Espaçamentos */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+
+  /* Layout */
+  --navbar-height: 60px;
+  --navbar-height-desktop: 72px;
+  --page-gutter: 16px;
+  --page-gutter-desktop: 32px;
+  --navbar-gutter-desktop: 40px;
+  --content-max-width: 1376px; /* 1440 - 2 × 32 (Figma); acima disso o conteúdo centraliza */
+  --sidebar-width: 380px;
+  --touch-target: 44px;
+
+  /* Card com aba (pasta) */
+  --folder-tab-width: 84px;
+  --folder-tab-height: 14px;
+
+  --transition-fast: 120ms ease;
+}

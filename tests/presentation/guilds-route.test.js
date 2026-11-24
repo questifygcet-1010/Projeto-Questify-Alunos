@@ -124,17 +124,17 @@ test('nome com menos de 3 caracteres -> 400 com campo name', async () => {
   assert.ok(res.body.fields.name);
 });
 
-test('nome com mais de 50 caracteres -> 400 com campo name', async () => {
+test('nome com mais de 30 caracteres -> 400 com campo name', async () => {
   const { route } = buildRoute();
-  const res = await post(route, { name: 'a'.repeat(51), categoryId: 1 });
+  const res = await post(route, { name: 'a'.repeat(31), categoryId: 1 });
   assert.equal(res.status, 400);
   assert.ok(res.body.fields.name);
 });
 
-test('nome com exatamente 3 e 50 caracteres é aceito', async () => {
+test('nome com exatamente 3 e 30 caracteres é aceito', async () => {
   const { route } = buildRoute();
   assert.equal((await post(route, { name: 'abc', categoryId: 1 })).status, 201);
-  assert.equal((await post(route, { name: 'b'.repeat(50), categoryId: 1 })).status, 201);
+  assert.equal((await post(route, { name: 'b'.repeat(30), categoryId: 1 })).status, 201);
 });
 
 test('ausência de categoria -> 400 com campo categoryId; categoria inexistente também', async () => {

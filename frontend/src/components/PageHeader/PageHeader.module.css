@@ -1,0 +1,39 @@
+/* Mobile (272:23): título e, logo abaixo, as ações em largura total. */
+.header {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-4);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-5xl); /* 22px no mobile ("Guildas" com 87px de largura no 272:25) */
+  font-weight: var(--weight-semibold);
+  line-height: 32px;
+  color: var(--color-ink);
+}
+
+.actions {
+  display: flex;
+  gap: var(--space-3);
+  width: 100%;
+}
+
+/* Desktop (58:633): título à esquerda e ações à direita. */
+@media (min-width: 768px) {
+  .header {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-4);
+    margin-bottom: var(--space-6);
+  }
+
+  .title {
+    font-size: var(--text-6xl);
+  }
+
+  .actions {
+    width: auto;
+  }
+}

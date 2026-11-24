@@ -1,4 +1,12 @@
 {
   "framework": null,
-  "outputDirectory": "frontend/dist"
+  "outputDirectory": "frontend/out",
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/index.html", "destination": "/login", "permanent": false },
+    { "source": "/register.html", "destination": "/register", "permanent": false }
+  ],
+  "rewrites": [
+    { "source": "/guilds/:id", "destination": "/guilds/_.html" }
+  ]
 }

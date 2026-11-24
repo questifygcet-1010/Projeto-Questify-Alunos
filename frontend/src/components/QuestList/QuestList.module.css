@@ -1,0 +1,158 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-4) var(--space-4) 6px;
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-bottom: var(--space-1);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+  color: var(--color-ink);
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.seeAll,
+.action {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: none;
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-primary);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.seeAll:hover,
+.action:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.seeAll:focus-visible,
+.action:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.action:disabled {
+  color: var(--color-muted);
+  cursor: progress;
+  text-decoration: none;
+}
+
+/* "Ver todas" não aparece no mobile (frame 5:2). */
+.seeAll {
+  display: none;
+}
+
+.list {
+  margin: 0;
+}
+
+/* Mobile (54:64): dados em cima; status e ação numa linha abaixo. */
+.row {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    'data data'
+    'status action';
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  padding: 14px 0;
+  border-top: 1px solid var(--color-line);
+}
+
+.data {
+  grid-area: data;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 0;
+}
+
+.questTitle {
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: 21px;
+  color: var(--color-ink);
+}
+
+.info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+  font-size: var(--text-md);
+  color: var(--color-muted);
+}
+
+.deadline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+}
+
+.status {
+  grid-area: status;
+  justify-self: start;
+}
+
+.action {
+  grid-area: action;
+  justify-self: end;
+}
+
+.empty {
+  padding: 14px 0 var(--space-4);
+  border-top: 1px solid var(--color-line);
+  font-size: var(--text-base);
+  color: var(--color-muted);
+}
+
+/* A partir de 768px (54:13): dados | status | ação numa linha. */
+@media (min-width: 768px) {
+  .card {
+    padding: var(--space-5) var(--space-5) 6px;
+  }
+
+  .seeAll {
+    display: inline-flex;
+  }
+
+  .row {
+    grid-template-columns: 1fr auto auto;
+    grid-template-areas: 'data status action';
+  }
+
+  .questTitle {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

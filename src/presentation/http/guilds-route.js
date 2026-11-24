@@ -4,7 +4,7 @@
 // Os adaptadores (api/_lib/guilds-http.js) ligam isto ao Node/Vercel.
 //
 // Responsabilidade desta camada: sessão -> payload -> serviço -> tradução de
-// `error.code` em status HTTP. NÃO repete regras de domínio (nome 3–50, categoria):
+// `error.code` em status HTTP. NÃO repete regras de domínio (nome 3–30, categoria):
 // quem valida é a Camada 2 e o erro volta como VALIDATION_ERROR.
 import {
   createGuild as defaultCreateGuild,

@@ -1,0 +1,157 @@
+/* Breakpoint da navbar desktop: 960px (ver comentário em Navbar.jsx). */
+
+.header {
+  position: relative;
+  z-index: 50;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-line);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-4);
+  height: var(--navbar-height);
+  /* Mesma largura máxima do <main> (1440): acima disso, navbar e conteúdo
+     centralizam juntos, mantendo os recuos de 40px e 32px do Figma. */
+  max-width: calc(var(--content-max-width) + 2 * var(--page-gutter-desktop));
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-10);
+  min-width: 0;
+}
+
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: var(--radius-md);
+  color: var(--color-ink);
+  text-decoration: none;
+}
+
+.logo:focus-visible,
+.link:focus-visible,
+.iconButton:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.logoMark {
+  width: 30px;
+  height: 30px;
+}
+
+.logoText {
+  font-family: var(--font-heading);
+  font-size: var(--text-4xl);
+  font-weight: var(--weight-bold);
+  line-height: normal;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  margin: 0;
+}
+
+.link {
+  display: block;
+  padding: 9px var(--space-4);
+  border-radius: var(--radius-md);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-medium);
+  line-height: normal;
+  color: var(--color-muted);
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color var(--transition-fast), color var(--transition-fast);
+}
+
+.link:hover {
+  color: var(--color-ink);
+  background: var(--color-sky);
+}
+
+.linkActive,
+.linkActive:hover {
+  background: var(--color-sky);
+  color: var(--color-primary);
+  font-weight: var(--weight-semibold);
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  flex-shrink: 0;
+}
+
+.iconButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-target);
+  height: var(--touch-target);
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--color-ink);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+}
+
+.iconButton:hover {
+  background: var(--color-sky);
+}
+
+.divider {
+  width: 1px;
+  height: 28px;
+  background: var(--color-line);
+}
+
+.desktopOnly {
+  display: none;
+}
+
+@media (min-width: 960px) {
+  .inner {
+    height: var(--navbar-height-desktop);
+    padding: 0 var(--navbar-gutter-desktop);
+  }
+
+  .logoMark {
+    width: 34px;
+    height: 34px;
+  }
+
+  .logoText {
+    font-size: var(--text-5xl);
+  }
+
+  .actions {
+    gap: var(--space-2);
+  }
+
+  .iconButton {
+    width: 40px;
+    height: 40px;
+  }
+
+  .desktopOnly {
+    display: block;
+  }
+
+  .mobileOnly {
+    display: none;
+  }
+}

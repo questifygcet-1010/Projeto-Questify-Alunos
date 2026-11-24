@@ -1,0 +1,196 @@
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+}
+
+.title {
+  font-family: var(--font-heading);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-semibold);
+  line-height: normal;
+  color: var(--color-ink);
+}
+
+.seeAll {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--touch-target);
+  border-radius: var(--radius-sm);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+.seeAll:hover {
+  color: var(--color-primary-dark);
+  text-decoration: underline;
+}
+
+.seeAll:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Mobile/intermediário: carrossel horizontal com snap. O carrossel avança até a
+   borda direita da tela para o card seguinte "espiar". */
+.section .list {
+  display: flex;
+  gap: var(--space-3);
+  /* Recuo de 4px (compensado pela margem negativa) para o anel de foco não ser cortado. */
+  margin: calc(-1 * var(--space-1)) calc(-1 * var(--page-gutter)) calc(-1 * var(--space-1)) calc(-1 * var(--space-1));
+  padding: var(--space-1) var(--page-gutter) var(--space-1) var(--space-1);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-padding-left: var(--space-1);
+  scrollbar-width: none;
+}
+
+.section .list::-webkit-scrollbar {
+  display: none;
+}
+
+/* 260px como no Figma; cresce só quando sobra espaço (ex.: 3 guildas em 1024px). */
+.item {
+  flex: 1 0 260px;
+  display: flex;
+  scroll-snap-align: start;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  width: 100%;
+  padding: var(--space-4);
+  color: var(--color-ink);
+  text-decoration: none;
+  transition: box-shadow var(--transition-fast);
+}
+
+.card:hover {
+  box-shadow: 0 0 0 1px var(--color-primary);
+}
+
+.card:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+.name {
+  overflow: hidden;
+  font-family: var(--font-heading);
+  font-size: var(--text-lg);
+  font-weight: var(--weight-semibold);
+  line-height: 20px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.members {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-md);
+  color: var(--color-muted);
+}
+
+.avatars {
+  display: flex;
+}
+
+.card .avatar + .avatar {
+  margin-left: -6px;
+}
+
+.chat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-2);
+  min-height: 24px;
+}
+
+.chatLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-base);
+  font-weight: var(--weight-medium);
+  color: var(--color-primary);
+}
+
+/* Card destacado: textos em branco. */
+.cardHighlight,
+.cardHighlight .members,
+.cardHighlight .chatLabel {
+  color: var(--color-white);
+}
+
+.cardHighlight:focus-visible {
+  outline-color: var(--color-ink);
+}
+
+.empty {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-3);
+  padding: var(--space-4);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+  font-size: var(--text-base);
+  color: var(--color-muted);
+}
+
+/* "Explorar guildas" e "Criar guilda" não aparecem no mobile (frame 5:2). */
+.actions {
+  display: none;
+  gap: var(--space-3);
+}
+
+.action {
+  flex: 1 1 0;
+}
+
+@media (min-width: 768px) {
+  .actions {
+    display: flex;
+  }
+
+  .section .list {
+    margin-right: calc(-1 * var(--page-gutter-desktop));
+    padding-right: var(--page-gutter-desktop);
+  }
+}
+
+/* Desktop (≥1200px): coluna lateral de 380px com lista vertical. */
+@media (min-width: 1200px) {
+  .section .list {
+    flex-direction: column;
+    gap: var(--space-4);
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+  }
+
+  .item {
+    flex: none;
+  }
+
+  .card .avatar {
+    width: 26px;
+    height: 26px;
+    font-size: var(--text-xs);
+  }
+}

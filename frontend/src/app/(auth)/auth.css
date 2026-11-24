@@ -1,0 +1,147 @@
+/* CSS legado das telas de login e cadastro (antigo frontend/style.css), sem mudança
+   visual. Tudo fica escopado em .legacy-auth para o tema escuro não vazar para as
+   telas novas, e vice-versa. .legacy-auth faz o papel do antigo <body>, e o <div>
+   filho faz o papel do antigo #root. */
+.legacy-auth,
+.legacy-auth * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.legacy-auth {
+    background-color: #0f172a;
+    color: #f8fafc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.legacy-auth .auth-container {
+    width: 100%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+}
+
+.legacy-auth .auth-card {
+    background: #1e293b;
+    padding: 2.5rem;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+}
+
+.legacy-auth .auth-card h2 {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+    color: #38bdf8;
+    text-align: center;
+}
+
+.legacy-auth .subtitle {
+    text-align: center;
+    color: #94a3b8;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.legacy-auth .input-group {
+    margin-bottom: 1.25rem;
+}
+
+.legacy-auth .input-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-size: 0.85rem;
+    color: #cbd5e1;
+}
+
+.legacy-auth .input-group input {
+    width: 100%;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #fff;
+    font-size: 1rem;
+}
+
+.legacy-auth .input-group input:focus {
+    outline: none;
+    border-color: #38bdf8;
+}
+
+.legacy-auth .btn-primary {
+    width: 100%;
+    padding: 0.75rem;
+    border: none;
+    border-radius: 6px;
+    background: #0284c7;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background 0.2s;
+    margin-top: 1rem;
+}
+
+.legacy-auth .btn-primary:hover {
+    background: #0ea5e9;
+}
+
+.legacy-auth .btn-primary:disabled {
+    cursor: wait;
+    opacity: 0.7;
+}
+
+.legacy-auth .error-message {
+    background: #7f1d1d;
+    color: #fca5a5;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.legacy-auth .success-message {
+    background: #065f46;
+    color: #6ee7b7;
+    padding: 0.5rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+.legacy-auth .password-requirements {
+    list-style: none;
+    padding: 0;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    color: #ef4444;
+}
+
+.legacy-auth .password-requirements .valid {
+    color: #10b981;
+}
+
+.legacy-auth .footer-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.85rem;
+    color: #94a3b8;
+}
+
+.legacy-auth .footer-link a {
+    color: #38bdf8;
+    text-decoration: none;
+}
+
+.legacy-auth .footer-link a:hover {
+    text-decoration: underline;
+}

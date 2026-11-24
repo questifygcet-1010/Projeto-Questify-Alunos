@@ -1,0 +1,28 @@
+.avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: var(--radius-full);
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  line-height: 1;
+  white-space: nowrap;
+  user-select: none;
+}
+
+.xs { width: 26px; height: 26px; font-size: var(--text-xs); }
+.sm { width: 28px; height: 28px; font-size: 11px; }
+.md { width: 36px; height: 36px; font-size: var(--text-base); }
+.lg { width: 40px; height: 40px; font-size: var(--text-lg); }
+.xl { width: 44px; height: 44px; font-size: 17px; }
+
+.primary { background: var(--color-primary); color: var(--color-white); }
+.primaryDark { background: var(--color-primary-dark); color: var(--color-white); }
+.success { background: var(--color-success); color: var(--color-white); }
+.gold { background: var(--color-gold); color: var(--color-ink); }
+.white { background: var(--color-white); color: var(--color-primary); }
+
+/* Borda que separa avatares sobrepostos (cor do fundo do card). */
+.ring-white { border: 2px solid var(--color-white); }
+.ring-primary { border: 2px solid var(--color-primary); }

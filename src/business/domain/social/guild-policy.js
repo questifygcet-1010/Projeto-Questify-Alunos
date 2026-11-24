@@ -2,7 +2,7 @@
 // Regras puras: sem I/O, sem SQL, sem HTTP.
 
 export const GUILD_NAME_MIN_LENGTH = 3;
-export const GUILD_NAME_MAX_LENGTH = 50;
+export const GUILD_NAME_MAX_LENGTH = 30;
 
 export const GUILD_ROLES = Object.freeze({ ADMIN: 'admin', MEMBER: 'member' });
 /** Regra: o criador da guilda torna-se Administrador. */

@@ -1,0 +1,25 @@
+/* "Card com aba" (estilo pasta) do Figma: aba de 84×14 no topo à esquerda, raio
+   superior 6; o corpo tem raio 8 exceto no canto superior esquerdo, onde encosta na aba.
+   A aba é um pseudo-elemento que herda o fundo do card. */
+.folder {
+  position: relative;
+  margin-top: var(--folder-tab-height);
+  border-radius: 0 var(--radius-lg) var(--radius-lg) var(--radius-lg);
+  background: var(--color-white);
+}
+
+.folder::before {
+  content: '';
+  position: absolute;
+  top: calc(-1 * var(--folder-tab-height));
+  left: 0;
+  width: var(--folder-tab-width);
+  height: var(--folder-tab-height);
+  border-radius: var(--radius-md) var(--radius-md) 0 0;
+  background: inherit;
+}
+
+.highlight {
+  background: var(--color-primary);
+  color: var(--color-white);
+}

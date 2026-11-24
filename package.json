@@ -8,17 +8,19 @@
   },
   "scripts": {
     "start": "node backend/server.js",
-    "dev": "vite frontend",
+    "dev": "next dev frontend",
     "test": "node --test",
-    "build": "vite build frontend",
-    "vercel-build": "npm run build && node --check api/health.js && node --check api/auth/login.js && node --check api/auth/register.js && node --check api/_lib/auth-handler.js && node --check api/_lib/guilds-http.js && node --check api/v1/guilds.js && node --check api/v1/guild-categories.js"
+    "build": "next build frontend",
+    "vercel-build": "npm run build && node --check api/health.js && node --check api/auth/login.js && node --check api/auth/register.js && node --check api/_lib/auth-handler.js && node --check api/_lib/guilds-http.js && node --check api/v1/guilds.js && node --check api/v1/guild-categories.js",
+    "test:jest": "node --experimental-vm-modules node_modules/jest/bin/jest.js"
   },
   "dependencies": {
+    "next": "^16.4.5",
     "postgres": "^3.4.7",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
   },
   "devDependencies": {
-    "vite": "^6.3.5"
+    "jest": "^30.5.2"
   }
 }

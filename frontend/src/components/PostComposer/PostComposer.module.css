@@ -1,0 +1,82 @@
+/* Mobile (5:96): padding 12, gap 10, avatar 36, campo 14px. */
+.card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: var(--space-3);
+  background: var(--color-white);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-lg);
+}
+
+.card .avatar {
+  width: 36px;
+  height: 36px;
+  font-size: var(--text-base);
+}
+
+.field {
+  flex: 1 1 0;
+  min-width: 0;
+  min-height: var(--touch-target);
+  padding: 10px var(--space-3);
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  background: var(--color-sky);
+  font-size: var(--text-base);
+  color: var(--color-ink);
+}
+
+.field::placeholder {
+  color: var(--color-muted);
+  opacity: 1;
+}
+
+.field:hover {
+  border-color: var(--color-line);
+}
+
+.field:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 0;
+  background: var(--color-white);
+}
+
+/* No mobile o botão só aparece quando há texto. */
+.publish {
+  display: none;
+}
+
+.card[data-has-text] .publish {
+  display: inline-flex;
+}
+
+.error {
+  flex-basis: 100%;
+  font-size: var(--text-md);
+  color: var(--color-error);
+}
+
+/* Desktop (4:60): padding 16, gap 12, avatar 40, campo 15px e botão sempre visível. */
+@media (min-width: 768px) {
+  .card {
+    gap: var(--space-3);
+    padding: var(--space-4);
+  }
+
+  .card .avatar {
+    width: 40px;
+    height: 40px;
+    font-size: var(--text-lg);
+  }
+
+  .field {
+    padding: 11px 14px;
+    font-size: var(--text-lg);
+  }
+
+  .publish {
+    display: inline-flex;
+  }
+}

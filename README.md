@@ -187,3 +187,14 @@ Esse fluxo é ilustrativo. Model/Entities não representa necessariamente uma et
 - Registrar as decisões arquiteturais relevantes e atualizar a documentação quando houver mudanças.
 - Avaliar as alternativas técnicas de acordo com as necessidades de cada squad, respeitando os requisitos e os padrões comuns do projeto.
 ---
+
+## 🌐 Guildas — Camada de Apresentação
+
+- `GET /api/v1/guild-categories`: lista as categorias para usuários autenticados.
+- `POST /api/v1/guilds`: cria uma guilda com `{ "name", "categoryId" }` para usuários autenticados.
+- `/guilds`: formulário protegido de criação de guilda.
+- `/guilds/{id}`: página de confirmação da guilda criada.
+
+A interface envia o token emitido pelo login no header `Authorization: Bearer <token>`.
+As regras de negócio continuam nos Services; a interface apenas valida o formato,
+apresenta erros HTTP e redireciona após a resposta `201`.

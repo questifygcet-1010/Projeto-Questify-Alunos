@@ -37,7 +37,7 @@ export function createGuildService({ repository, withTransaction }) {
     const authenticatedUserId = parsePositiveId(userId);
     if (authenticatedUserId === null) throw new UnauthenticatedError();
 
-    // 2. Regras de domínio (nome 3–50, categoria informada)
+    // 2. Regras de domínio (nome 3–30, categoria informada)
     const { value, errors } = validateGuildInput(payload);
     if (errors) throw new ValidationError(errors);
 

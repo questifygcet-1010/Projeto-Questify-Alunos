@@ -1,1 +1,4 @@
-
+AGENTS.md
+frontend/.next/
+frontend/out/
+node_modules/

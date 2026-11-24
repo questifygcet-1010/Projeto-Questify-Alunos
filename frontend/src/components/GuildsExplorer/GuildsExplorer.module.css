@@ -1,0 +1,50 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+/* No mobile (58:727) o botão ocupa a largura toda, abaixo do título. */
+.createButton {
+  width: 100%;
+}
+
+.loading {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+}
+
+.loadingText {
+  font-size: var(--text-md);
+  color: var(--color-muted);
+}
+
+/* Grade fluida: 1 coluna no mobile, 2 no intermediário e no máximo 3 no desktop
+   (cada coluna tem pelo menos 280px ou um terço da largura). */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(max(280px, calc((100% - 2 * var(--space-4)) / 3)), 1fr));
+  gap: var(--space-4);
+  margin: 0;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+@media (min-width: 768px) {
+  .content {
+    gap: var(--space-6);
+  }
+
+  .createButton {
+    width: auto;
+  }
+
+  .grid {
+    gap: var(--space-6) var(--space-4);
+  }
+}
