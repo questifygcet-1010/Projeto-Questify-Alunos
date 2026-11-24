@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Contrato Squad 2 → Squad 4 — Crédito de Gold por Conclusão de Quest</title>
+  <style>
+    :root {
+      --ink: #17212b;
+      --muted: #5b6775;
+      --line: #c9d2dc;
+      --accent: #1f5f8b;
+      --soft: #eef4f8;
+    }
+
+    @page {
+      size: A4;
+      margin: 16mm 14mm;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 10.5pt;
+      line-height: 1.45;
+    }
+
+    .page {
+      max-width: 190mm;
+      margin: 0 auto;
+    }
+
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
+      margin-bottom: 16px;
+    }
+
+    .eyebrow {
+      color: var(--accent);
+      font-size: 9pt;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 4px 0 6px;
+      font-size: 19pt;
+      line-height: 1.15;
+    }
+
+    .subtitle {
+      margin: 0;
+      color: var(--muted);
+      font-size: 10pt;
+    }
+
+    .meta {
+      display: flex;
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .meta div {
+      flex: 1;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 6px 8px;
+      font-size: 9pt;
+      color: var(--muted);
+    }
+
+    h2 {
+      margin: 18px 0 8px;
+      font-size: 13pt;
+      color: var(--accent);
+      border-bottom: 1px solid var(--line);
+      padding-bottom: 4px;
+    }
+
+    h3 {
+      margin: 14px 0 6px;
+      font-size: 11pt;
+    }
+
+    p {
+      margin: 0 0 8px;
+    }
+
+    ul,
+    ol {
+      margin: 0 0 10px 18px;
+      padding: 0;
+    }
+
+    li {
+      margin: 0 0 4px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 6px 0 12px;
+    }
+
+    th,
+    td {
+      border: 1px solid var(--line);
+      padding: 6px 7px;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--soft);
+      font-size: 9.5pt;
+    }
+
+    tr {
+      page-break-inside: avoid;
+    }
+
+    .num {
+      width: 24px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    .answer {
+      width: 34%;
+    }
+
+    .confirm {
+      width: 15%;
+    }
+
+    .tag {
+      display: inline-block;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      padding: 1px 7px;
+      font-size: 8.5pt;
+      color: var(--muted);
+    }
+
+    code {
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 9.5pt;
+    }
+
+    pre {
+      margin: 6px 0 12px;
+      padding: 10px 12px;
+      background: #f6f8fa;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      font-family: Consolas, "Courier New", monospace;
+      font-size: 9pt;
+      white-space: pre-wrap;
+    }
+
+    .note {
+      background: var(--soft);
+      border-left: 3px solid var(--accent);
+      padding: 8px 10px;
+      margin: 8px 0 12px;
+    }
+
+    .checklist {
+      list-style: none;
+      margin-left: 0;
+    }
+
+    .checklist li {
+      padding-left: 20px;
+      position: relative;
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 3px;
+      width: 10px;
+      height: 10px;
+      border: 1px solid var(--muted);
+      border-radius: 2px;
+    }
+
+    footer {
+      margin-top: 18px;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 8.5pt;
+    }
+
+    @media print {
+      body {
+        font-size: 10pt;
+      }
+
+      .page {
+        max-width: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div class="eyebrow">Questify · Squad 2 → Squad 4</div>
+      <h1>Contrato de integração — Crédito de Gold por Conclusão de Quest</h1>
+      <p class="subtitle">Documento para o Squad 2 confirmar os dados e o fluxo necessários para o Squad 4 creditar Gold com segurança.</p>
+      <div class="meta">
+        <div>Preenchido por (Squad 2):</div>
+        <div>Data:</div>
+        <div>Responsável Squad 4:</div>
+      </div>
+    </header>
+
+    <div class="note">
+      <strong>Como usar:</strong> o Squad 2 deve marcar <em>Sim</em> ou <em>Não</em> nas premissas, responder às perguntas na coluna indicada e devolver este documento. As respostas fecham o contrato necessário para o Squad 4 implementar o adaptador de crédito sem risco de duplicidade.
+    </div>
+
+    <h2>1. Premissas que o Squad 4 assumiu — confirmar</h2>
+    <table>
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Premissa</th>
+          <th class="confirm">Confirmado?</th>
+          <th>Observação do Squad 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">1</td>
+          <td>O valor de <code>status_quest</code> que representa conclusão é exatamente <code>completed</code>.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">2</td>
+          <td><code>gold_base</code> é o valor final a creditar; o Squad 4 não calcula bônus.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">3</td>
+          <td>Não existe <code>id_conclusao</code> nem <code>id_evento</code> no payload.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td>A chave de idempotência será <code>quest-completed:&lt;id_usuario&gt;:&lt;id_quest&gt;:&lt;data_conclusao&gt;</code>.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">5</td>
+          <td><code>data_conclusao</code> é imutável, única por conclusão e representa o momento real da conclusão.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">6</td>
+          <td>A mesma quest pode ser concluída mais de uma vez; datas diferentes geram créditos diferentes.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td>O Squad 2 chamará o Squad 4 em processo, dentro da mesma transação (<code>tx</code>) da conclusão.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">8</td>
+          <td><code>gold_base = 0</code> não gera crédito e não deve ser tratado como erro.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">9</td>
+          <td><code>XP_base</code> é responsabilidade do Squad 2; o Squad 4 não credita XP.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">10</td>
+          <td><code>id_guilda</code> é opcional e não altera o valor do crédito; será usado apenas para rastreabilidade.</td>
+          <td class="confirm">☐ Sim &nbsp; ☐ Não</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>2. Perguntas críticas</h2>
+
+    <h3>A. Status e identificação</h3>
+    <table>
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Pergunta</th>
+          <th class="answer">Resposta do Squad 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">1</td>
+          <td>Qual é o enum completo de <code>status_quest</code> e o significado de cada valor?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">2</td>
+          <td>Uma quest pode ser reaberta ou cancelada depois de <code>completed</code>? O que acontece com o Gold já creditado?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">3</td>
+          <td>Existe algum identificador único da conclusão (<code>id_conclusao</code>, <code>id_evento</code>, UUID)? Se sim, qual o nome, tipo e origem?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">4</td>
+          <td>Se não existe identificador único: <code>data_conclusao</code> é gravada uma única vez e nunca muda? Qual o formato e o timezone?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">5</td>
+          <td>A mesma quest pode ser concluída várias vezes? Com que frequência? Como o Squad 2 diferencia cada conclusão?</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>B. Valor do crédito</h3>
+    <table>
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Pergunta</th>
+          <th class="answer">Resposta do Squad 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">6</td>
+          <td><code>gold_base</code> é sempre o valor final? Qual o tipo exato (inteiro, string, nullable)? Pode ser negativo?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">7</td>
+          <td>Existe bônus ou multiplicador (guilda, streak, evento, VIP)? Quem calcula e em qual momento?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">8</td>
+          <td>O valor pode mudar depois da conclusão? Se sim, qual valor prevalece para o crédito?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">9</td>
+          <td><code>XP_base</code> é sempre responsabilidade do Squad 2? Confirmar que o Squad 4 deve ignorá-lo.</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>C. Entrega, transação e erros</h3>
+    <table>
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Pergunta</th>
+          <th class="answer">Resposta do Squad 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">10</td>
+          <td>A chamada será em processo, no formato <code>handleQuestCompleted(payload, { tx })</code>? Confirmar a assinatura.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">11</td>
+          <td>O <code>tx</code> será o mesmo da conclusão da quest? Quem abre e quem faz commit/rollback?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">12</td>
+          <td>Em qual ponto do fluxo a chamada acontece: antes do commit, depois do commit ou em outro processo?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">13</td>
+          <td>Se o crédito de Gold falhar, a conclusão da quest deve sofrer rollback?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">14</td>
+          <td>Se a quest falhar depois do crédito, como o Gold será revertido ou compensado? Quem executa?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">15</td>
+          <td>Pode haver retry ou reenvio do mesmo evento? Com que frequência? Qual o comportamento esperado em duplicidade: ignorar ou erro?</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">16</td>
+          <td>O Squad 2 precisa do saldo atualizado na resposta? Em qual formato e em quanto tempo?</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>D. Dados e exemplos</h3>
+    <table>
+      <thead>
+        <tr>
+          <th class="num">#</th>
+          <th>Pergunta</th>
+          <th class="answer">Resposta do Squad 2</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="num">17</td>
+          <td>Enviar dois payloads reais: um de sucesso e um de reenvio do mesmo evento.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">18</td>
+          <td>Enviar um exemplo de quest concluída com <code>gold_base = 0</code>.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">19</td>
+          <td>Enviar um exemplo de quest recorrente: mesma quest, conclusões em datas diferentes.</td>
+          <td></td>
+        </tr>
+        <tr>
+          <td class="num">20</td>
+          <td>Enviar o enum de status com um exemplo de payload para cada valor relevante.</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>3. Formato de payload esperado pelo Squad 4</h2>
+    <pre>{
+  "id_usuario": 7,
+  "id_quest": 42,
+  "status_quest": "completed",
+  "data_conclusao": "2026-11-18T12:00:00Z",
+  "id_guilda": 3,
+  "XP_base": 50,
+  "gold_base": 30
+}</pre>
+    <p><span class="tag">Obrigatórios</span> <code>id_usuario</code>, <code>id_quest</code>, <code>status_quest</code>, <code>data_conclusao</code> e <code>gold_base</code> quando a quest estiver concluída.</p>
+    <p><span class="tag">Opcional</span> <code>id_guilda</code>. <span class="tag">Ignorado pelo Squad 4</span> <code>XP_base</code>.</p>
+
+    <h2>4. Critérios de aceite da integração</h2>
+    <ul class="checklist">
+      <li>Reenvio do mesmo evento não duplica Gold.</li>
+      <li>Duas conclusões diferentes da mesma quest geram créditos distintos.</li>
+      <li>Quest com <code>gold_base = 0</code> não gera crédito e não falha.</li>
+      <li>Falha de crédito não deixa a quest concluída sem Gold, ou existe compensação definida.</li>
+      <li><code>source_event_id</code> é único e permite rastrear a conclusão.</li>
+      <li>O Squad 2 disponibiliza ambiente e payload para teste da integração.</li>
+      <li>O Squad 2 confirma o formato e o timezone de <code>data_conclusao</code>.</li>
+      <li>O Squad 2 confirma o ponto de chamada e o compartilhamento do <code>tx</code>.</li>
+    </ul>
+
+    <h2>5. Observações e riscos</h2>
+    <ul>
+      <li>Sem um identificador único de conclusão, a idempotência depende de <code>data_conclusao</code> ser estável.</li>
+      <li>Se o mesmo evento for reenviado com outra data ou outro formato de timezone, pode haver duplicidade.</li>
+      <li>O Squad 4 registra cada crédito em <code>gold_ledger</code> com <code>source_event_id</code> único.</li>
+      <li>O Squad 4 não altera <code>XP_base</code> nem executa regras de XP.</li>
+    </ul>
+
+    <footer>
+      Documento de alinhamento entre Squad 2 e Squad 4 · Questify · Crédito de Gold por Conclusão de Quest
+    </footer>
+  </div>
+</body>
+</html>
