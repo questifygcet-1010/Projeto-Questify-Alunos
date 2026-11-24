@@ -221,3 +221,122 @@ test('rejeita conclusão já processada com informações diferentes', async () 
     { code: 'IDEMPOTENCY_CONFLICT' },
   );
 });
+
+test('rejeita conclusão já creditada para outro usuário', async () => {
+  const tx = { id: 'transaction-4' };
+
+  const movement = {
+    id: 5,
+    user_id: 7,
+    type: 'CREDIT',
+    amount: 50,
+    source_event_id: 'conclusion-15',
+  };
+
+  const service = createWalletService({
+    repository: {
+      async findBySourceEventId() {
+        return movement;
+      },
+    },
+  });
+
+  await assert.rejects(
+    () => service.creditGoldForQuest({
+      userId: 8,
+      amount: 50,
+      conclusionId: 'conclusion-15',
+      tx,
+    }),
+    { code: 'IDEMPOTENCY_CONFLICT' },
+  );
+});
+
+test('reconhece evento duplicado após conflito na inserção', async () => {
+  const tx = { id: 'transaction-5' };
+
+  const movement = {
+    id: 6,
+    user_id: 7,
+    type: 'CREDIT',
+    amount: 50,
+    source_event_id: 'conclusion-15',
+  };
+
+  let searchCount = 0;
+
+  const service = createWalletService({
+    repository: {
+      async findBySourceEventId(sourceEventId, receivedTx) {
+        assert.equal(sourceEventId, 'conclusion-15');
+        assert.equal(receivedTx, tx);
+
+        searchCount++;
+
+        return searchCount === 1 ? null : movement;
+      },
+
+      async createCredit(data, receivedTx) {
+        assert.equal(data.userId, 7);
+        assert.equal(data.amount, 50);
+        assert.equal(receivedTx, tx);
+
+        return null;
+      },
+
+      async findBalanceByUserId(userId, receivedTx) {
+        assert.equal(userId, 7);
+        assert.equal(receivedTx, tx);
+
+        return 150;
+      },
+    },
+  });
+
+  const result = await service.creditGoldForQuest({
+    userId: 7,
+    amount: 50,
+    conclusionId: 'conclusion-15',
+    tx,
+  });
+
+  assert.equal(result.credited, false);
+  assert.equal(result.duplicated, true);
+  assert.equal(result.balance, 150);
+  assert.equal(result.movement, movement);
+  assert.equal(searchCount, 2);
+});
+
+test('rejeita identificadores de usuário inválidos', async () => {
+  const service = createWalletService();
+
+  const invalidUserIds = [
+    0,
+    -1,
+    1.5,
+    NaN,
+    null,
+    undefined,
+    '7',
+  ];
+
+  for (const userId of invalidUserIds) {
+    await assert.rejects(
+      () => service.getBalance(userId),
+      { code: 'VALIDATION_ERROR' },
+    );
+  }
+});
+
+test('rejeita limites inválidos no histórico de Gold', async () => {
+  const service = createWalletService();
+
+  const invalidLimits = [0, -1, 101, 1.5, NaN, null, '20'];
+
+  for (const limit of invalidLimits) {
+    await assert.rejects(
+      () => service.listMovements(7, limit),
+      { code: 'VALIDATION_ERROR' },
+    );
+  }
+});
