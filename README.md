@@ -198,3 +198,37 @@ Esse fluxo é ilustrativo. Model/Entities não representa necessariamente uma et
 A interface envia o token emitido pelo login no header `Authorization: Bearer <token>`.
 As regras de negócio continuam nos Services; a interface apenas valida o formato,
 apresenta erros HTTP e redireciona após a resposta `201`.
+
+---
+
+## 🧪 7. Testes Automatizados e Manual de Execução
+
+O projeto utiliza uma arquitetura de testes em camadas para validar tanto as regras puras de negócio quanto os fluxos completos da interface do usuário, sem depender de um banco de dados externo durante a execução local ou em CI.
+
+### 1. Testes Unitários (Jest)
+Validam regras puras de domínio e serviços de aplicação isolados (utilizando mocks para transações e repositórios):
+- **`tests/unit/social/guild-policy.jest.mjs`**: Valida normalização de nomes, limites de caracteres (3 a 30), validação de IDs positivos e atribuição do papel `admin` ao criador da guilda.
+- **`tests/unit/social/guild-service.jest.mjs`**: Testa a orquestração do caso de uso `createGuild` (sucesso com criação de vínculo admin, erro de usuário não autenticado, conflito de nome duplicado e categoria inexistente).
+- **`tests/unit/analytics/ranking-policy.jest.mjs`**: Valida os filtros de escopo, período e limites de paginação do ranking.
+
+**Como executar:**
+```bash
+npm run test:jest
+```
+
+### 2. Testes End-to-End / E2E (Playwright)
+Simulam a navegação de um usuário real no frontend Next.js (em ambiente Chromium headless), interceptando requisições HTTP (`/api/**`) para validar a integração completa de telas, formulários, validações e sessão:
+- **`tests/e2e/auth-e2e.spec.mjs`**:
+  - **Login:** Preenche credenciais em `/login`, valida o armazenamento do token (`questify_access_token`) no `localStorage` e verifica o redirecionamento para a página inicial (`/`).
+  - **Validação de Cadastro:** Impede o envio do formulário em `/register` quando a senha não atende aos critérios de segurança exigidos.
+  - **Criação de Conta:** Simula o cadastro válido em `/register`, exibe a mensagem de confirmação e verifica o redirecionamento automático para `/login`.
+
+**Pré-requisito (apenas na primeira execução na máquina):**
+```bash
+npx playwright install chromium
+```
+
+**Como executar (sobe o servidor Next.js automaticamente e roda os cenários):**
+```bash
+npm run test:e2e
+```

@@ -2,3 +2,8 @@ AGENTS.md
 frontend/.next/
 frontend/out/
 node_modules/
+
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
