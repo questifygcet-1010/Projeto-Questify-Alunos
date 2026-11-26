@@ -65,6 +65,65 @@ test('não credita novamente um evento já processado', async () => {
   assert.equal(result.balance, 80);
 });
 
+test('credita Gold por atividade concluída com sucesso', async () => {
+  const tx = { id: 'transaction-activity' };
+  const movement = {
+    id: 10,
+    user_id: 7,
+    type: 'CREDIT',
+    amount: 50,
+    source_event_id: 'quest-10',
+  };
+
+  let transactionCount = 0;
+  let creditCount = 0;
+
+  const service = createWalletService({
+    transaction: async (work) => {
+      transactionCount++;
+      return work(tx);
+    },
+
+    repository: {
+      async findBySourceEventId(sourceEventId, receivedTx) {
+        assert.equal(sourceEventId, 'quest-10');
+        assert.equal(receivedTx, tx);
+        return null;
+      },
+
+      async createCredit(data, receivedTx) {
+        assert.equal(data.userId, 7);
+        assert.equal(data.amount, 50);
+        assert.equal(data.sourceEventId, 'quest-10');
+        assert.equal(receivedTx, tx);
+
+        creditCount++;
+        return movement;
+      },
+
+      async findBalanceByUserId(userId, receivedTx) {
+        assert.equal(userId, 7);
+        assert.equal(receivedTx, tx);
+        return 150;
+      },
+    },
+  });
+
+  const result = await service.creditForActivity({
+    userId: 7,
+    amount: 50,
+    sourceEventId: 'quest-10',
+  });
+
+  assert.equal(result.credited, true);
+  assert.equal(result.duplicated, false);
+  assert.equal(result.balance, 150);
+  assert.equal(result.movement, movement);
+
+  assert.equal(transactionCount, 1);
+  assert.equal(creditCount, 1);
+});
+
 test('rejeita quantidade de Gold inválida', async () => {
   const service = createWalletService();
 
